@@ -1,1 +1,622 @@
-Hello world
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J&S Hondenuitlaatservice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --primary:#2B87D1;
+            --primary-dark:#1F6FAF;
+            --background:#F5F9FD;
+            --text:#333;
+            --white:#FFFFFF;
+            --shadow:0 15px 40px rgba(0,0,0,.08);
+            --radius:22px;
+        }
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        html{
+            scroll-behavior:smooth;
+        }
+        body{
+            font-family:'Poppins',sans-serif;
+            background:var(--background);
+            color:var(--text);
+            overflow-x:hidden;
+        }
+        img{
+            display:block;
+            max-width:100%;
+        }
+        a{
+            text-decoration:none;
+            color:inherit;
+        }
+        .container{
+            width:min(1200px,100%);
+            margin:auto;
+            padding:0 24px;
+        }
+        section{
+            padding:100px 0;
+        }
+        .section-title{
+            font-size:44px;
+            color:var(--primary);
+            text-align:center;
+            margin-bottom:60px;
+        }
+        header{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:90px;
+            background:white;
+            box-shadow:var(--shadow);
+            z-index:9999;
+        }
+        nav{
+            height:90px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+        }
+        .logo{
+            display:flex;
+            align-items:center;
+            gap:18px;
+        }
+        .logo-circle{
+            width:72px;
+            height:72px;
+            border-radius:50%;
+            background:linear-gradient(#5EBBF8,#2B87D1);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            color:white;
+            font-size:30px;
+            font-weight:700;
+        }
+        .logo-text h2{
+            font-size:28px;
+            color:var(--primary);
+        }
+        .logo-text p{
+            font-size:14px;
+            color:#666;
+        }
+        .menu{
+            display:flex;
+            list-style:none;
+            gap:40px;
+        }
+        .menu a{
+            font-weight:600;
+            transition:.3s;
+        }
+        .menu a:hover{
+            color:var(--primary);
+        }
+        .hamburger{
+            display:none;
+            font-size:34px;
+            cursor:pointer;
+        }
+        .hero{
+            margin-top:90px;
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            background:
+                    linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+                    url("https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1800&auto=format&fit=crop");
+            background-size:cover;
+            background-position:center;
+        }
+        .hero-content{
+            max-width:650px;
+            color:white;
+        }
+        .hero-content h1{
+            font-size:clamp(50px,7vw,84px);
+            line-height:1.05;
+            margin-bottom:25px;
+        }
+        .hero-content p{
+            font-size:22px;
+            line-height:1.8;
+            max-width:600px;
+        }
+        .grid-2{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:60px;
+            align-items:center;
+        }
+        .grid-3{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+            gap:30px;
+        }
+        .card{
+            background:white;
+            padding:35px;
+            border-radius:var(--radius);
+            box-shadow:var(--shadow);
+            transition:.35s;
+        }
+        .card:hover{
+            transform:translateY(-10px);
+        }
+        .about-image img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            border-radius:var(--radius);
+            box-shadow:var(--shadow);
+        }
+        .about-text h3{
+            font-size:34px;
+            color:var(--primary);
+            margin-bottom:25px;
+        }
+        .about-text p{
+            font-size:17px;
+            line-height:1.9;
+            margin-bottom:20px;
+        }
+        .service-icon{
+            width:90px;
+            height:90px;
+            margin:0 auto 25px;
+            border-radius:50%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:#EAF5FE;
+            font-size:48px;
+        }
+        .card h3{
+            text-align:center;
+            color:var(--primary);
+            margin-bottom:15px;
+        }
+        .card p{
+            text-align:center;
+            line-height:1.8;
+        }
+        .price-card{
+            text-align:center;
+            position:relative;
+        }
+        .price{
+            font-size:72px;
+            font-weight:700;
+            color:var(--primary);
+            margin:20px 0;
+        }
+        .badge{
+            position:absolute;
+            top:-18px;
+            left:50%;
+            transform:translateX(-50%);
+            background:var(--primary);
+            color:white;
+            padding:8px 18px;
+            border-radius:40px;
+            font-size:13px;
+            font-weight:600;
+        }
+        footer{
+            background:#23415D;
+            color:white;
+            text-align:center;
+            padding:70px 20px;
+        }
+        /* ===========================
+           MOBIEL
+        =========================== */
+        @media (max-width:900px){
+            header{
+                height:70px;
+            }
+            nav{
+                height:70px;
+            }
+            .logo-circle{
+                width:52px;
+                height:52px;
+                font-size:22px;
+            }
+            .logo-text{
+                display:none;
+            }
+            .hamburger{
+                display:block;
+            }
+            .menu{
+                display:none;
+                position:absolute;
+                top:70px;
+                left:0;
+                width:100%;
+                background:white;
+                flex-direction:column;
+                padding:25px;
+                gap:18px;
+                box-shadow:0 10px 25px rgba(0,0,0,.12);
+            }
+            .menu.open{
+                display:flex;
+            }
+            .menu li{
+                width:100%;
+            }
+            .menu a{
+                display:block;
+                padding:10px 0;
+            }
+            .hero{
+                margin-top:70px;
+                min-height:75vh;
+                padding:60px 0;
+            }
+            .hero-content{
+                max-width:100%;
+                text-align:center;
+            }
+            .hero-content h1{
+                font-size:36px;
+                line-height:1.15;
+            }
+            .hero-content p{
+                font-size:17px;
+                line-height:1.7;
+            }
+            .grid-2{
+                grid-template-columns:1fr;
+                gap:35px;
+            }
+            .grid-3{
+                grid-template-columns:1fr;
+            }
+            .section-title{
+                font-size:34px;
+            }
+            section{
+                padding:70px 0;
+            }
+            .card{
+                padding:25px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <div class="logo-circle">
+                    J&S
+                </div>
+                <div class="logo-text">
+                    <h2>J&S Hondenuitlaatservice</h2>
+                    <p>Met liefde voor iedere hond</p>
+                </div>
+            </div>
+            <ul class="menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#over">Over ons</a></li>
+                <li><a href="#diensten">Diensten</a></li>
+                <li><a href="#prijzen">Tarieven</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                ☰
+            </div>
+        </nav>
+    </div>
+</header>
+<section class="hero" id="home">
+    <div class="container">
+        <div class="hero-content">
+            <h1>
+                J&S<br>
+                Honden-<br>
+                uitlaatservice
+            </h1>
+            <p>
+                Professionele hondenuitlaatservice waar
+                liefde, veiligheid en plezier voor iedere hond
+                centraal staan.
+            </p>
+        </div>
+    </div>
+</section>
+<section id="over">
+    <div class="container">
+        <h2 class="section-title">
+            Over ons
+        </h2>
+        <p style="line-height:1.9;margin-top:20px;">
+            Wij zijn <strong>Sam (10 jaar groep 7)</strong> en <strong>Jason (11 jaar groep 8)</strong>.
+            Wij zitten allebei op de <strong>Casa Tweetalige Montessorischool</strong> en zijn echte hondenliefhebbers.
+            Onze eerste onderneming was het bezorgen van broodjes aan vrienden en mensen uit de buurt. Dat vonden we zo leuk dat we op het idee kwamen om onze eigen hondenuitlaatservice te beginnen.
+            Met veel enthousiasme en verantwoordelijkheid zorgen wij ervoor dat iedere hond een leuke, veilige en actieve wandeling krijgt. We vinden het belangrijk dat iedere hond voldoende beweging, aandacht en liefde krijgt, zodat hij of zij blij weer thuiskomt.
+        </p>
+        <div class="grid-2">
+            <div class="about-image">
+                <img
+                        src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=1200&auto=format&fit=crop"
+                        alt="Hond">
+            </div>
+            <div class="about-text">
+                <p style="
+color:var(--primary);
+font-size:18px;
+font-weight:600;
+letter-spacing:1px;
+margin-bottom:15px;
+">
+                <h3>
+                    Met liefde voor iedere hond 🐾
+                </h3>
+                <p>
+                    Bij J&S Hondenuitlaatservice krijgt iedere hond
+                    de aandacht die hij verdient. Wij zorgen voor
+                    veilige, actieve en leuke wandelingen die volledig
+                    worden afgestemd op het karakter en de behoeften
+                    van jouw hond.
+                </p>
+                <p>
+                    Of jouw hond jong of oud is,
+                    groot of klein,
+                    wij behandelen iedere hond
+                    alsof het onze eigen hond is.
+                </p>
+                <p>
+                    Persoonlijke aandacht,
+                    betrouwbaarheid
+                    en liefde voor dieren
+                    staan bij ons altijd op de eerste plaats.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="diensten">
+    <div class="container">
+        <h2 class="section-title">
+            Onze Diensten
+        </h2>
+        <div class="grid-3">
+            <div class="card">
+                <div class="service-icon">
+                    🐕
+                </div>
+                <h3>
+                    Individuele wandeling
+                </h3>
+                <p>
+                    Een rustige wandeling waarbij jouw hond alle
+                    persoonlijke aandacht krijgt. Ideaal voor honden
+                    die graag één-op-één worden uitgelaten.
+                </p>
+            </div>
+            <div class="card">
+                <div class="service-icon">
+                    🐶
+                </div>
+                <h3>
+                    Groepswandeling
+                </h3>
+                <p>
+                    Gezellige wandelingen in kleine groepen met
+                    andere sociale honden. Veilig, actief en leuk
+                    voor iedere viervoeter.
+                </p>
+            </div>
+            <div class="card">
+                <div class="service-icon">
+                    🦴
+                </div>
+                <h3>
+                    Puppyservice
+                </h3>
+                <p>
+                    Speciaal voor puppy's. Korte wandelingen met
+                    veel persoonlijke aandacht zodat jouw pup rustig
+                    kan wennen aan de buitenwereld.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="prijzen">
+    <div class="container">
+        <h2 class="section-title">
+            Tarieven
+        </h2>
+        <div class="grid-3">
+            <div class="card price-card">
+                <h3>
+                    15 Minuten
+                </h3>
+                <div class="price">
+                    €2
+                </div>
+                <p>
+                    ✔Een korte wandeling voor honden die
+                    even lekker naar buiten willen.
+                </p>
+            </div>
+            <div class="card price-card">
+                <h3>
+                    45 Minuten
+                </h3>
+                <div class="price">
+                    €4
+                </div>
+                <p>
+                    ✔Een uitgebreide wandeling met voldoende tijd om te spelen<br>
+                    ✔Een lekkere snack op het einde.
+                </p>
+            </div>
+            <div class="card price-card">
+                <h3>
+                    Waarom kiezen voor ons?
+                </h3>
+                <div class="price">
+                    ⭐
+                </div>
+                <p>
+                    ✔ Betrouwbare service<br>
+                    ✔ Persoonlijke aandacht<br>
+                    ✔ Liefde voor honden<br>
+                    ✔ Veilige wandelingen<br>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="contact">
+    <div class="container">
+        <h2 class="section-title">
+            Contact
+        </h2>
+        <div class="contact-card">
+            <h3 style="color:var(--primary);margin-bottom:25px;">
+                Neem contact met ons op
+            </h3>
+            <p style="line-height:2;">
+                Heeft u interesse in onze hondenuitlaatservice? Neem dan contact met ons op via e-mail of telefoon. Onze contactgegevens vindt u hieronder.
+                <br><br>
+                U kunt ons altijd een e-mail sturen. Wij proberen uw bericht zo snel mogelijk te beantwoorden.
+                <br><br>
+                <strong>Telefoon</strong><br>
+                06-17772871
+                <br><br>
+                <strong>E-mail</strong><br>
+                Samschollaart@gmail.com
+                <br><br>
+                <strong>Werkgebied</strong><br>
+                Pijnacker en omgeving
+                <br><br>
+                <strong>Openingstijden</strong><br>
+                Maandag t/m Vrijdag<br>
+                14:00- 19:00<br>
+                Weekend<br>
+                9:00 19:00
+            </p>
+            <br>
+            </a>
+        </div>
+    </div>
+</section>
+<footer>
+    <div class="container">
+        <h2>
+            J&S Hondenuitlaatservice
+        </h2>
+        <p style="
+margin-top:20px;
+font-size:18px;
+">
+            Met liefde voor iedere hond 🐾
+        </p>
+        <div style="
+width:80px;
+height:4px;
+background:white;
+margin:35px auto;
+border-radius:999px;
+"></div>
+        <p>
+            <strong>Telefoon</strong><br>
+            06-17772871
+        </p>
+        <br>
+        <p>
+            <strong>E-mail</strong><br>
+            Samschollaart@gmail.com
+        </p>
+        <br>
+        <p>
+            <strong>Werkgebied</strong><br>
+            Pijnacker en omgeving
+        </p>
+        <br><br>
+        <p style="opacity:.8;">
+            © 2026 J&S Hondenuitlaatservice<br>
+            Alle rechten voorbehouden.
+        </p>
+    </div>
+</footer>
+<script>
+    // ==========================
+    // HAMBURGER MENU
+    // ==========================
+    const hamburger = document.querySelector(".hamburger");
+    const menu = document.querySelector(".menu");
+    hamburger.addEventListener("click", () => {
+        menu.classList.toggle("open");
+    });
+    // ==========================
+    // MENU SLUITEN NA KLIKKEN
+    // ==========================
+    document.querySelectorAll(".menu a").forEach(link => {
+        link.addEventListener("click", () => {
+            if(window.innerWidth <= 900){
+                menu.classList.remove("open");
+            }
+        });
+    });
+    // ==========================
+    // RESIZE
+    // ==========================
+    window.addEventListener("resize", () => {
+        if(window.innerWidth > 900){
+            menu.classList.remove("open");
+        }
+    });
+    // ==========================
+    // SCROLL ANIMATIES
+    // ==========================
+    const observer = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+            if(entry.isIntersecting){
+                entry.target.classList.add("show");
+            }
+        });
+    },{
+        threshold:0.15
+    });
+    document.querySelectorAll("section, .card").forEach(el=>{
+        el.classList.add("hidden");
+        observer.observe(el);
+    });
+</script>
+<style>
+    /* Scroll animatie */
+    .hidden{
+        opacity:0;
+        transform:translateY(40px);
+        transition:all .7s ease;
+    }
+    .show{
+        opacity:1;
+        transform:translateY(0);
+    }
+</style>
+</body>
+</html>
